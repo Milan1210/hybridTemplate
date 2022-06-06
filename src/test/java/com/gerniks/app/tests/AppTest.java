@@ -1,23 +1,24 @@
-package com.gerniks.app;
+package com.gerniks.app.tests;
 
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.gerniks.app.BaseClass;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppTest extends BaseClass
 {
     /**
      * Rigorous Test :-)
      */
     @Test
     public void shouldAnswerWithTrue(){
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.get("https://youtube.com");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.id("email")).sendKeys(email);
+        driver.findElement(By.id("pass")).sendKeys(passwprd);
     }
 }
