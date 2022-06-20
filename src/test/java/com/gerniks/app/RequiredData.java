@@ -5,12 +5,17 @@ import java.util.Scanner;
 public class RequiredData {
 
     //Driver config
-     String os = "win";
-     String browserDriver = "firefox";
-     boolean runLocal = true;
-     boolean localDriver = false;
-     boolean grid = true;
-     String extension = "driver";
+     public String os = "win";
+     public String browserDriver = "chrome";
+     public boolean runLocal = false;
+     public boolean headless = true;
+     public boolean localDriver = false;  //FALSE value means that it will run driver through WebDriverManager
+
+    public boolean grid = false;
+    public String gridPlatform = "Linux";
+    public String gridURL = "http://localhost:4444";
+
+    public String extension = "driver";
 
     public String propertyFileName = "file";
     public static String url = "https://youtube.com";

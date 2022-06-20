@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 
 
 public class BaseClass extends SetDriver{
-    public WebDriver driver;
+//    public WebDriver driver;
     public String email;
     public String passwprd;
 
@@ -21,15 +21,15 @@ public class BaseClass extends SetDriver{
             case "chrome":
             System.out.println("Browser "+rd.browserDriver);
                 chromeManager();
-                driver = new ChromeDriver();;
+//                driver = new ChromeDriver();
                 break;
             case "gecko":
                 fireFoxManager();
-                driver = new FirefoxDriver();
+//                driver = new FirefoxDriver();
                 break;
             case "edge":
                 edgeManager();
-                driver = new EdgeDriver();
+//                driver = new EdgeDriver();
                 break;
         }
 
@@ -44,6 +44,6 @@ public class BaseClass extends SetDriver{
 
     @AfterClass
     public void close(){
-        driver.close();
+        driver.quit();
     }
 }
