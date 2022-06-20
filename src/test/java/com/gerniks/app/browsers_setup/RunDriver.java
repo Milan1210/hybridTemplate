@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 public class RunDriver extends DriverSetup {
     @BeforeClass
     public void startDriver() {
+        System.out.println("This is a status code "+GenericFunctions.getStatusCode(url));
         driver.manage().window().maximize();
         driver.get(url);
 

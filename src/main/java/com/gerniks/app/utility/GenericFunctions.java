@@ -1,5 +1,10 @@
 package com.gerniks.app.utility;
 
+import io.restassured.RestAssured;
+import static io.restassured.RestAssured.*;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,5 +29,12 @@ public class GenericFunctions {
             return "There isn't variable";
         }
 
+    }
+
+    public static int getStatusCode(String url){
+        RestAssured.baseURI = url;
+        RequestSpecification httpRequest = given();
+        Response response = httpRequest.get();
+        return response.getStatusCode();
     }
 }
