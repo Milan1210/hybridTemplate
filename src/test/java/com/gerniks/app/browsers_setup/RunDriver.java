@@ -1,5 +1,6 @@
 package com.gerniks.app.browsers_setup;
 
+import com.gerniks.app.utility.GenericFunctions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 

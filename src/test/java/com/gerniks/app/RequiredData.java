@@ -1,5 +1,7 @@
 package com.gerniks.app;
 
+import com.gerniks.app.utility.GenericFunctions;
+
 import java.util.Scanner;
 
 public class RequiredData {
@@ -7,9 +9,9 @@ public class RequiredData {
     //Driver config
      public String os = "win";
      public String browserDriver = "chrome";
-     public boolean runLocal = false;
-     public boolean headless = true;
-     public boolean localDriver = false;  //FALSE value means that it will run driver through WebDriverManager
+     public boolean runLocal = true;
+     public boolean localDriver = true;  //FALSE value means that it will run driver through WebDriverManager
+     public boolean headless = false;  //TRUE mean browser will be hidden during execution
 
     public boolean grid = false;
     public String gridPlatform = "Linux";
@@ -17,8 +19,8 @@ public class RequiredData {
 
     public String extension = "driver";
 
-    public String propertyFileName = "file";
-    public static String url = "https://youtube.com";
+    public static String propertyFileName = "file";
+    public static String url = new GenericFunctions().fileRead(propertyFileName,"url");
     public String sourcePath = System.getProperty("user.dir");
     public String fullWebDriverPath;
 

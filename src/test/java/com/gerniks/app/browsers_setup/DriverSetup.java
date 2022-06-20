@@ -12,12 +12,14 @@ public class DriverSetup extends RequiredData {
 
     public void setUp(){
         DriverStrategy chooseDriver = new ChooseDriver().chooseDriver(browserDriver);
-        if (localDriver){
-            driver = chooseDriver.setLocalDriver();
-        }else if (headless){
-            driver = chooseDriver.setHeadLess();
-        }else {
-            driver = chooseDriver.setDriverManager();
+        if (runLocal){
+            if (localDriver){
+                if (headless){
+                    driver = chooseDriver.setHeadLess();
+                }else {driver = chooseDriver.setLocalDriver();}
+            } else {
+                driver = chooseDriver.setDriverManager();
+            }
         }
 
         if (grid){
