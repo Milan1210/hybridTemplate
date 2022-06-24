@@ -2,6 +2,7 @@ package com.gerniks.app.utility;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -12,10 +13,12 @@ import java.time.Duration;
 public class WebElementUtils {
     public WebDriver driver;
     WebDriverWait wait;
+    Actions actions;
 
     public WebElementUtils(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        actions = new Actions(driver);
     }
 
     public void click(WebElement element){
@@ -26,6 +29,31 @@ public class WebElementUtils {
     public void jsClick(WebElement element){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
+    }
+
+    public void mouseHover(WebElement element){
+        waitForVisibility(element);
+        actions.moveToElement(element).perform();
+    }
+
+    public void doubleClick(WebElement element){
+        waitForVisibility(element);
+        actions.doubleClick(element).perform();
+    }
+
+    public void rightClick(WebElement element){
+        waitForVisibility(element);
+        actions.contextClick(element).perform();
+    }
+
+    public void clickAndHold(WebElement element){
+        waitForVisibility(element);
+        actions.clickAndHold(element).perform();
+    }
+
+    public void releaseClick(WebElement element){
+        waitForVisibility(element);
+        actions.release(element).perform();
     }
 
     public void hybridWait(WebElement element, int sec){
@@ -50,6 +78,15 @@ public class WebElementUtils {
         js.executeScript("window.scrollBy('0','"+position+"');");
     }
 
+    public void waitForVisibility(WebElement element){
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+        } catch (Exception e) {
+//            hybridWait(element,10);
+            e.printStackTrace();
+        }
+    }
+
     public void type(WebElement element, String text){
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.clear();
@@ -58,6 +95,7 @@ public class WebElementUtils {
 
     public void slowType(WebElement element, String text, int milisec){
         wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.isDisplayed();
         element.clear();
         for (int i = 0; i<text.length(); i++) {
         char letter = text.charAt(i);
@@ -85,5 +123,23 @@ public class WebElementUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void dragAndDrop(WebElement source, WebElement target){
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(source, target).perform();
+    }
+
+    public void acceptAlert(boolean Accept){
+        wait.until(ExpectedConditions.alertIsPresent());
+        if (Accept){
+        driver.switchTo().alert().accept();
+        }else {driver.switchTo().alert().dismiss();}
+    }
+
+    public void uploadFile(WebElement element, String file){  //put content root of the file e.g screenshots/image22.png
+        waitForVisibility(element);
+        String rootPath = System.getProperty("user.dir");
+        element.sendKeys(rootPath+"\\"+file);
     }
 }

@@ -1,6 +1,7 @@
 package com.gerniks.app.utility;
 
 import net.bytebuddy.dynamic.scaffold.MethodGraph;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
@@ -73,5 +74,15 @@ public class Helpers {
         }else {
             driver.switchTo().window(tabs.get(index));
         }
+    }
+
+    public void switchToIFrame(WebDriver driver,int index){
+        int size = driver.findElements(By.tagName("iframe")).size();
+        System.out.println("This is sum of iframe "+size);
+        driver.switchTo().frame(index);
+    }
+
+    public void switchToIFrame(WebDriver driver,String iFrame){
+        driver.switchTo().frame(iFrame);
     }
 }
