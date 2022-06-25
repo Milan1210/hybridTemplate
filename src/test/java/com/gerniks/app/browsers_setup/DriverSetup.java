@@ -14,7 +14,7 @@ public class DriverSetup extends RequiredData {
     public WebDriver driver; // That is driver with listener
 
     DriverSetup(){
-        this.validateStatusCode();
+        this.validateBaseUrl();
         this.setUp();
     }
 
@@ -40,7 +40,7 @@ public class DriverSetup extends RequiredData {
 
     }
 
-    public void validateStatusCode() {
+    public void validateBaseUrl() {
         int statusCode = GenericFunctions.getStatusCode(url);
 
         //Assert.assertTrue(statusCode<399,"Status code of the page isn't as expected, the current status code is "+ statusCode);

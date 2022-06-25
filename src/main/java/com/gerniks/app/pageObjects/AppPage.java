@@ -1,7 +1,7 @@
 package com.gerniks.app.pageObjects;
 
 import com.gerniks.app.utility.Helpers;
-import com.gerniks.app.utility.RedirectionLinks;
+import com.gerniks.app.utility.ManageLinks;
 import com.gerniks.app.utility.WebElementUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -64,9 +64,9 @@ public class AppPage extends WebElementUtils {
     }
 
     public void navigateToAlertPage(){
-        RedirectionLinks redirectionLinks = new RedirectionLinks();
+        ManageLinks manageLinks = new ManageLinks();
         driver.navigate().to("https://youtube.com");
-        driver.navigate().to(redirectionLinks.redirectURL("Alerts.html"));
+        driver.navigate().to(manageLinks.redirectURL("Alerts.html"));
     }
 
     public void selectTab(int index){

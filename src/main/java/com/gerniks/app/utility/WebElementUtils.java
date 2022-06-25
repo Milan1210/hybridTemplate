@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 public class WebElementUtils {
     public WebDriver driver;
@@ -141,5 +142,21 @@ public class WebElementUtils {
         waitForVisibility(element);
         String rootPath = System.getProperty("user.dir");
         element.sendKeys(rootPath+"\\"+file);
+    }
+
+    public void verifyAllLinksInThePage(){
+        ManageLinks manageLinks = new ManageLinks();
+        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.tagName("a"))));
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+
+        for (WebElement link:links) {
+            String url = link.getAttribute("href");
+            manageLinks.verifyLinkConnection(url);
+        }
+    }
+
+    public void verifyLink(WebElement linkElement){
+        ManageLinks manageLinks = new ManageLinks();
+        String url = linkElement.getAttribute("href");
     }
 }
