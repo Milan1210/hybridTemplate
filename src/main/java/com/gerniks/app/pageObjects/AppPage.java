@@ -16,7 +16,7 @@ public class AppPage extends WebElementUtils {
     @FindBy(id = "pass")
     WebElement password;
 
-    @FindBy(name = "login")
+    @FindBy(name = "logins")
     WebElement loginBtn;
 
     @FindBy(id = "s22")
