@@ -10,7 +10,7 @@ public class RequiredData {
      public String os = "win";
      public String browserDriver = "chrome";
      public boolean runLocal = true;
-     public boolean localDriver = true;  //FALSE value means that it will run driver through WebDriverManager
+     public boolean localDriver = false;  //FALSE value means that it will run driver through WebDriverManager
      public boolean headless = false;  //TRUE mean browser will be hidden during execution
 
     public boolean grid = false;

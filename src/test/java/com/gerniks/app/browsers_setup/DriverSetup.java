@@ -51,7 +51,7 @@ public class DriverSetup extends RequiredData {
         }
     }
 
-    public WebDriver setUpListener(){
+    public WebDriver setUpListener(){ // if you want to use webDriverListener just implement this method instad of driver e.g setUpListener.click();
         WebDriverListener listener = new Listener();
         return new EventFiringDecorator(listener).decorate(driverOrigin);
     }

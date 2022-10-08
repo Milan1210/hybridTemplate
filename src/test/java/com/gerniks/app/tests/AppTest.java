@@ -2,7 +2,11 @@ package com.gerniks.app.tests;
 
 
 import com.gerniks.app.BaseClass;
+import com.gerniks.app.browsers_setup.RunDriver;
+import com.gerniks.app.listeners.Listener;
+import com.gerniks.app.listeners.TestNgListener;
 import com.gerniks.app.pageObjects.AppPage;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.text.DateFormat;
@@ -12,13 +16,15 @@ import java.util.Date;
 /**
  * Unit test for simple App.
  */
-public class AppTest extends BaseClass {
+
+public class AppTest extends RunDriver {
     /**
      * Rigorous Test :-)
      */
     @Test
     public void shouldAnswerWithTrue() {
-        AppPage a = new AppPage(driver);
+        Listener listener = new Listener();
+        AppPage a = new AppPage(setUpListener());
 //        a.enterEmailAndPassowrd();
 //        a.captureElem();
         a.switchToNewWin();
@@ -36,5 +42,10 @@ public class AppTest extends BaseClass {
         DateFormat format = new SimpleDateFormat(pattern);
         String currentDate = format.format(date);
         System.out.println("THis is the date: " + currentDate);
+    }
+
+    @Test
+    public void test1() {
+        setUpListener().get("https://www.softwaretestingmaterial.com/webdriver-event-listeners/");
     }
 }
